@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TestApp.ViewModels"
+             xmlns:m="clr-namespace:TestApp.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="TestApp.MainPage">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource YoBlue}" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.BindingContext>
+        <vm:CarouselItemsViewModel></vm:CarouselItemsViewModel>
+    </ContentPage.BindingContext>
+
+    <ScrollView
+        Orientation="Vertical">
+        <Grid
+            >
+            <!-- Main content -->
+            <Grid
+                RowDefinitions="*, *, *"
+                Padding="30"
+                RowSpacing="20">
+                <VerticalStackLayout
+                    Grid.Row ="0"
+                    VerticalOptions="Center"
+                    Margin="0, 0, 0, 20">
+                    <Label
+                        Text="Welcome to the"
+                        FontFamily="MyFont_SemiBold"
+                        FontSize="30"></Label>
+                    <Label
+                        Text="SmartAttendance App"
+                        FontSize="32"
+                        Padding="0, 20, 0, 0"
+                        CharacterSpacing="1"
+                        FontFamily="MyFont_Bold"
+                        FontAttributes="Bold"/>
+                    <Label
+                        Text="Your Classroom Attendance Companion"
+                        FontFamily="MyFont_SemiBold"
+                        FontSize="20"
+                        Margin="0, 5, 0, 0"
+                        TextColor="DarkSlateGray"></Label>
+                </VerticalStackLayout>
+
+                <Grid 
+                    Grid.Row ="1"
+                    RowDefinitions="*, Auto">
+                    <CarouselView ItemsSource="{Binding CarouselItems}"
+                                  Grid.Row="0"
+                                  IndicatorView="IndicatorView">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate x:DataType="m:CarousalItem">
+                                <StackLayout>
+                                    <Border Stroke="DarkGray"
+                                            StrokeShape="RoundRectangle 6"
+                                            Margin="20"
+                                            Padding="20"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center">
+                                        <Grid
+                                            RowDefinitions="Auto, *, *"
+                                            RowSpacing="8">
+                                            <Image Grid.Row="0"
+                                                   Source="{Binding Image}"
+                                                   Aspect="AspectFill"
+                                                   HeightRequest="200"
+                                                   Opacity="0.4"
+                                                   WidthRequest="200"
+                                                   HorizontalOptions="Center" />
+                                            <Label Grid.Row="1"
+                                                   Text="{Binding HeadLine}"
+                                                   FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   FontFamily="MyFont_SemiBold"
+                                                   HorizontalOptions="Center" />
+                                            <Label Text="{Binding TagLine}"
+                                                   Grid.Row="3"
+                                                   MaxLines="5"
+                                                   HorizontalTextAlignment="Center"
+                                                   LineBreakMode="WordWrap" />
+                                        </Grid>
+                                    </Border>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView x:Name="IndicatorView"
+                                   Grid.Row="1"
+                                   IndicatorColor="LightGray"
+                                   SelectedIndicatorColor="DarkGray"
+                                   HorizontalOptions="Center" />
+                </Grid>
+
+                <Button 
+                    Grid.Row ="2"
+                    Text="Get Started"
+                    HeightRequest="60"
+                    FontSize="18"
+                    VerticalOptions="Center"
+                    BackgroundColor="{StaticResource YoBlue}"
+                    Margin="0, 30, 0, 0"
+                    Clicked="ShowLoginSheet" />
+            </Grid>
+
+            <!-- Overlay -->
+            <BoxView x:Name="Overlay"
+                     BackgroundColor="Black"
+                     Opacity="0"
+                     IsVisible="False"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     ZIndex="1" >
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnOverlayTapped"></TapGestureRecognizer>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <!-- Bottom Sheet -->
+            <Frame x:Name="BottomSheet"
+                   BackgroundColor="White"
+                   HeightRequest="400"
+                   CornerRadius="20"
+                   IsVisible="False"
+                   TranslationY="400"
+                   VerticalOptions="End"
+                   Margin="0"
+                   ZIndex="2">
+
+                <Grid
+                    RowSpacing="10"
+                    RowDefinitions="Auto, Auto, *, *, Auto">
+                    <VerticalStackLayout
+                        Spacing="10"
+                        Grid.Row="0"
+                        Margin="0, 0, 0, 10">
+                        <Label Text="Login"
+                               FontSize="24" HorizontalOptions="Center" />
+                        <Label
+                            Text="Please Login to continue"
+                            TextColor="DarkSlateGray"
+                            HorizontalOptions="Center"></Label>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout
+                        Grid.Row ="1"
+                        Spacing="10">
+                        <Entry Placeholder="Email"/>
+                        <Entry Placeholder="Password"
+                               IsPassword="True" />
+                    </VerticalStackLayout>
+                    <Button Text="Login"
+                            Grid.Row="2"
+                            HeightRequest="56"
+                            Margin="0, 20, 0, 0"
+                            BackgroundColor="{StaticResource YoBlue}"
+                            TextColor="White" />
+                    <Label Text="Forgot Password"
+                           TextColor="Blue"
+                           Grid.Row="3"
+                           Margin="0, 5"
+                           HorizontalOptions="Center"
+                           TextDecorations="Underline"/>
+                    <Label
+                        Grid.Row="4"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    Text="Don't have an account?"></Span>
+                                <Span
+                                    Text="Signup"
+                                    TextDecorations="Underline"
+                                    TextColor="Blue"
+                                    >
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SignUpClicked"></TapGestureRecognizer>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </Frame>
+
+            <Frame x:Name="SignUpSheet"
+                   BackgroundColor="White"
+                   HeightRequest="500"
+                   CornerRadius="20"
+                   IsVisible="False"
+                   TranslationY="500"
+                   VerticalOptions="End"
+                   Margin="0"
+                   ZIndex="2">
+
+                <Grid
+                    RowSpacing="10"
+                    RowDefinitions="Auto, Auto, *, Auto">
+                    <VerticalStackLayout
+                        Spacing="10"
+                        Grid.Row="0"
+                        Margin="0, 0, 0, 10">
+                        <Label Text="Signup"
+                               FontSize="24" HorizontalOptions="Center" />
+                        <Label
+                            Text="Please Create an Account to continue"
+                            TextColor="DarkSlateGray"
+                            HorizontalOptions="Center"></Label>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout
+                        Grid.Row ="1"
+                        Spacing="10">
+                        <Entry Placeholder="Name"/>
+                        <Entry Placeholder="Email"/>
+                        <Entry Placeholder="Password"
+                               IsPassword="True" />
+                        <Entry Placeholder="Confirm Password"
+                               IsPassword="True" />
+                        <Button Text="Signup"
+                                Grid.Row="2"
+                                HeightRequest="56"
+                                Margin="0, 20, 0, 0"
+                                BackgroundColor="{StaticResource YoBlue}"
+                                TextColor="White" />
+                    </VerticalStackLayout>
+                    
+                    <Label Text="Forgot Password"
+                           Grid.Row="2"
+                           TextColor="Blue"
+                           Margin="0, 5"
+                           HorizontalOptions="Center"
+                           TextDecorations="Underline"/>
+                    <Label
+                        Grid.Row="3"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    Text="Already have an account?"></Span>
+                                <Span
+                                    Text="Login"
+                                    TextColor="Blue"
+                                    TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="LoginClicked"></TapGestureRecognizer>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
