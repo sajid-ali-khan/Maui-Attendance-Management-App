@@ -9,14 +9,6 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Label">
-                <Setter Property="FontFamily" Value="MyFont_Book"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource YoBlue}"></Setter>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="FontFamily" Value="MyFont_Book"></Setter>
-                <Setter Property="TextColor" Value="White"></Setter>
-            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

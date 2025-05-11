@@ -4,10 +4,11 @@
              xmlns:vm="clr-namespace:TestApp.ViewModels"
              xmlns:m="clr-namespace:TestApp.Models"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundColor="{StaticResource PageBackgroundColor}"
              x:Class="TestApp.MainPage">
 
     <ContentPage.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource YoBlue}" StatusBarStyle="LightContent" />
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource PageBackgroundColor}" StatusBarStyle="DarkContent" />
     </ContentPage.Behaviors>
 
     <ContentPage.BindingContext>
@@ -43,7 +44,7 @@
                         FontFamily="MyFont_SemiBold"
                         FontSize="20"
                         Margin="0, 5, 0, 0"
-                        TextColor="DarkSlateGray"></Label>
+                        Opacity="0.8"></Label>
                 </VerticalStackLayout>
 
                 <Grid 
@@ -101,7 +102,6 @@
                     HeightRequest="60"
                     FontSize="18"
                     VerticalOptions="Center"
-                    BackgroundColor="{StaticResource YoBlue}"
                     Margin="0, 30, 0, 0"
                     Clicked="ShowLoginSheet" />
             </Grid>
@@ -138,6 +138,7 @@
                         Grid.Row="0"
                         Margin="0, 0, 0, 10">
                         <Label Text="Login"
+                               FontFamily="MyFont_SemiBold"
                                FontSize="24" HorizontalOptions="Center" />
                         <Label
                             Text="Please Login to continue"
@@ -155,9 +156,8 @@
                             Grid.Row="2"
                             HeightRequest="56"
                             Margin="0, 20, 0, 0"
-                            BackgroundColor="{StaticResource YoBlue}"
                             TextColor="White" />
-                    <Label Text="Forgot Password"
+                    <Label Text="Forgot Password?"
                            TextColor="Blue"
                            Grid.Row="3"
                            Margin="0, 5"
@@ -205,6 +205,7 @@
                         Grid.Row="0"
                         Margin="0, 0, 0, 10">
                         <Label Text="Signup"
+                               FontFamily="MyFont_SemiBold"
                                FontSize="24" HorizontalOptions="Center" />
                         <Label
                             Text="Please Create an Account to continue"
@@ -224,11 +225,10 @@
                                 Grid.Row="2"
                                 HeightRequest="56"
                                 Margin="0, 20, 0, 0"
-                                BackgroundColor="{StaticResource YoBlue}"
                                 TextColor="White" />
                     </VerticalStackLayout>
                     
-                    <Label Text="Forgot Password"
+                    <Label Text="Forgot Password?"
                            Grid.Row="2"
                            TextColor="Blue"
                            Margin="0, 5"
