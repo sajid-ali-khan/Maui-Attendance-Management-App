@@ -4,9 +4,23 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TestApp"
+    xmlns:views="clr-namespace:TestApp.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="Test App">
     
-
+    <TabBar>
+        <ShellContent
+            Title="Tasks"
+            Icon="clipboard"
+            ContentTemplate="{DataTemplate views:TasksPage}"/>
+        <ShellContent
+            Title="Attendance"
+            Icon="attendance"
+            ContentTemplate="{DataTemplate views:AttendancePage}"/>
+        <ShellContent
+            Title="Leaves"
+            Icon="leave"
+            ContentTemplate="{DataTemplate views:LeavesPage}"/>
+    </TabBar>
 
 </Shell>

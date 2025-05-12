@@ -1,4 +1,5 @@
 ﻿using TestApp.Resources.Styles;
+using TestApp.Views;
 
 namespace TestApp
 {
@@ -8,7 +9,7 @@ namespace TestApp
         {
             InitializeComponent();
             SetTheme();
-            MainPage = new MainPage();
+            MainPage = new GetStartedPage();
         }
 
         private void SetTheme()

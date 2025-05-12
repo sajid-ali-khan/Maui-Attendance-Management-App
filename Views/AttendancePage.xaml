@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:TestApp.Views.Controls"
+             x:Class="TestApp.Views.AttendancePage"
+             Title="Attendance">
+    <Shell.TitleView>
+        <Label 
+            VerticalOptions="Center"
+            FontFamily="MyFont_SemiBold"
+            FontSize="20"
+            Padding="10, 0"
+            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
+    </Shell.TitleView>
+</controls:BasePage>
