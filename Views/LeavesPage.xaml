@@ -14,4 +14,6 @@
             Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
     </Shell.TitleView>
 
+    
+
 </controls:BasePage>
