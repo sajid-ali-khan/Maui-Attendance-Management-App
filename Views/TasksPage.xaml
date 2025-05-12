@@ -7,12 +7,14 @@
              Title="Tasks">
 
     <Shell.TitleView>
-        <Label 
-            VerticalOptions="Center"
-            FontFamily="MyFont_SemiBold"
-            FontSize="20"
-            Padding="10, 0"
-            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
+        <Grid>
+            <Label 
+                VerticalOptions="Center"
+                FontFamily="MyFont_SemiBold"
+                FontSize="20"
+                Padding="10, 0"
+                Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
+        </Grid>
     </Shell.TitleView>
 
     <Grid>
@@ -33,13 +35,79 @@
                 Padding="20">
                 <Frame
                     x:Name="NotificationCard"
-                    HeightRequest="40"
                     HasShadow="True"
-                    HorizontalOptions="Fill"
-                    BorderColor="Black">
-                    <Label
-                        Text="Nigga, you have a notification"></Label>
+                    Padding="0"
+                    CornerRadius="10"
+                    BorderColor="#FFD700"
+                    BackgroundColor="#FFCC00"
+                    HorizontalOptions="Fill">
+
+                    <Grid>
+                        <Grid
+                            Padding="12"
+                            HorizontalOptions="Fill"
+                            ColumnDefinitions="Auto, *, Auto"
+                            ColumnSpacing="10"
+                            RowDefinitions="Auto, Auto">
+
+                            <Image
+                                Source="ringing"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                HeightRequest="24"
+                                VerticalOptions="Start"/>
+
+                            <Label 
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontFamily="MyFont_SemiBold"
+                                FontSize="18"
+                                Text="New Notification"
+                                TextColor="Black"
+                                VerticalOptions="Start"/>
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                TextColor="Black"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="2"
+                                FontSize="14"
+                                Text="Two days leave has been announced on the account of Deepavali"/>
+
+                            <ImageButton
+                                Source="close"
+                                BackgroundColor="Transparent"
+                                HeightRequest="20"
+                                WidthRequest="20"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Grid.RowSpan="2"
+                                Clicked="CloseNotification"
+                                VerticalOptions="Start"
+                                HorizontalOptions="End"/>
+                        </Grid>
+
+                        <Rectangle
+                            x:Name="ShineEffect"
+                            WidthRequest="80"
+                            Rotation="20"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Fill"
+                            InputTransparent="True"
+                            IsVisible="True">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#00FFFFFF" Offset="0.0"/>
+                                    <GradientStop Color="#80FFFFFF" Offset="0.5"/>
+                                    <GradientStop Color="#00FFFFFF" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Grid>
                 </Frame>
+
 
                 <CollectionView
                     Margin="0, 10"

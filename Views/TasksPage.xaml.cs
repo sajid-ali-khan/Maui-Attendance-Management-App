@@ -13,9 +13,22 @@ public partial class TasksPage : BasePage
         BindingContext = viewModel;
     }
 
+    private async void AnimateShine()
+    {
+        while (true)
+        {
+            ShineEffect.TranslationX = -ShineEffect.Width;
+            await ShineEffect.TranslateTo(NotificationCard.Width, 0, 2000, Easing.Linear);
+            await Task.Delay(3000);
+        }
+    }
+
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
+
+        AnimateShine();
         ResetSheetPosition(TaskSheet);
 
     }
@@ -94,5 +107,10 @@ public partial class TasksPage : BasePage
         {
             viewModel.RemoveTask(task);
         }
+    }
+
+    private void CloseNotification(object? sender, EventArgs e)
+    {
+        NotificationCard.IsVisible = false;
     }
 }
