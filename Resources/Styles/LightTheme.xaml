@@ -18,4 +18,9 @@
     <Style TargetType="Entry">
         <Setter Property="FontSize" Value="16"></Setter>
     </Style>
+    <Style TargetType="Span">
+        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        <Setter Property="FontFamily" Value="MyFont_Book"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+    </Style>
 </ResourceDictionary>
