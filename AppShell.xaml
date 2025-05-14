@@ -16,7 +16,7 @@
         <ShellContent
             Title="Attendance"
             Icon="attendance"
-            ContentTemplate="{DataTemplate views:AttendancePage}"/>
+            ContentTemplate="{DataTemplate views:ClassesPage}"/>
         <ShellContent
             Title="Leaves"
             Icon="leave"

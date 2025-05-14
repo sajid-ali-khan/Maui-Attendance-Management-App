@@ -1,15 +1,98 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<controls:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:TestApp.Views.Controls"
+             xmlns:converters="using:TestApp.Converters"
+             xmlns:viewModels="using:TestApp.ViewModels"
              x:Class="TestApp.Views.AttendancePage"
+             Padding="20, 0"
              Title="Attendance">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolColorConverter x:Key="ColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Shell.TitleView>
         <Label 
-            VerticalOptions="Center"
-            FontFamily="MyFont_SemiBold"
-            FontSize="20"
-            Padding="10, 0"
-            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
+                VerticalOptions="Center"
+                FontFamily="MyFont_SemiBold"
+                FontSize="20"
+                Padding=" 0"
+                Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
     </Shell.TitleView>
-</controls:BasePage>
+
+    <Grid
+        RowDefinitions="Auto, *, Auto"
+        RowSpacing="10">
+        <Frame
+            CornerRadius="20"
+            Padding="4, 0">
+            <SearchBar 
+                Placeholder="Search students"
+                FontSize="16"
+                FontFamily="MyFont_Regular"
+                PlaceholderColor="Gray"
+                CancelButtonColor="DarkGray"
+                HeightRequest="50"
+            />
+        </Frame>
+        <CollectionView 
+            Grid.Row="1"
+            ItemsSource="{Binding Students}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:StudentViewModel">
+                    <Frame
+                        Padding="0"
+                        Margin="2, 4"
+                        CornerRadius="12"
+                        HasShadow="True"
+                        BorderColor="{Binding IsPresent, Converter={StaticResource ColorConverter}}">
+                        <Grid
+                            x:Name="StudentBlock"
+                            Padding="10"
+                            ColumnDefinitions="Auto, *"
+                            RowDefinitions="*, *"
+                            ColumnSpacing="16"
+                            BackgroundColor="{Binding IsPresent, Converter={StaticResource ColorConverter}}"
+                            RowSpacing="6">
+                            <Image
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Aspect="AspectFill"
+                                VerticalOptions="Center"
+                                Source="{Binding ImagePath}"
+                                HeightRequest="40"
+                                WidthRequest="40"
+                            >
+                                <Image.Clip>
+                                    <EllipseGeometry
+                                        Center="20,20"
+                                        RadiusX="20"
+                                        RadiusY="20" />
+                                </Image.Clip>
+                            </Image>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding Name}"
+                                FontSize="20"></Label>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding Roll}"
+                                TextColor="DimGray"></Label>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Grid.Row="2"
+            Text="Submit"
+            HeightRequest="52"
+            HorizontalOptions="Fill"></Button>
+    </Grid>
+</ContentPage>

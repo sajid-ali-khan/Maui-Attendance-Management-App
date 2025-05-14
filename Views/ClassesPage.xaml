@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="using:TestApp.ViewModels"
+             x:Class="TestApp.Views.ClassesPage"
+             xmlns:base="using:TestApp.Views.Controls"
+             Title="Classes">
+
+    <Shell.TitleView>
+        <Label 
+            VerticalOptions="Center"
+            FontFamily="MyFont_SemiBold"
+            FontSize="20"
+            Padding="10, 0"
+            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
+    </Shell.TitleView>
+
+    <CollectionView ItemsSource="{Binding Classes}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="viewModels:SubjectViewModel">
+                <Frame
+                    Margin="20, 5">
+                    <VerticalStackLayout
+                        Spacing="10">
+                        <Label
+                            FontFamily="MyFont_SemiBold"
+                            Text="{Binding Name}"></Label>
+                        <Label
+                            TextColor="Silver">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="{Binding Branch}"></Span>
+                                    <Span
+                                        Text="-"></Span>
+                                    <Span
+                                        Text="{Binding Section}"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding ClickCommand}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</base:BasePage>

@@ -68,6 +68,9 @@
 	  <Compile Update="Views\GetStartedPage.xaml.cs">
 	    <DependentUpon>GetStartedPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ClassesPage.xaml.cs">
+	    <DependentUpon>ClassesPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,6 +84,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LeavesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ClassesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TasksPage.xaml">
