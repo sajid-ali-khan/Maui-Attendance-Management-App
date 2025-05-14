@@ -23,9 +23,11 @@
 
     <Grid
         RowDefinitions="Auto, *, Auto"
+        HorizontalOptions="Fill"
         RowSpacing="10">
         <Frame
-            CornerRadius="20"
+            CornerRadius="4"
+            HorizontalOptions="Fill"
             Padding="4, 0">
             <SearchBar 
                 Placeholder="Search students"
@@ -33,6 +35,7 @@
                 FontFamily="MyFont_Regular"
                 PlaceholderColor="Gray"
                 CancelButtonColor="DarkGray"
+                HorizontalOptions="Fill"
                 HeightRequest="50"
             />
         </Frame>
@@ -41,10 +44,11 @@
             ItemsSource="{Binding Students}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewModels:StudentViewModel">
+                    
                     <Frame
                         Padding="0"
                         Margin="2, 4"
-                        CornerRadius="12"
+                        CornerRadius="4"
                         HasShadow="True"
                         BorderColor="{Binding IsPresent, Converter={StaticResource ColorConverter}}">
                         <Grid

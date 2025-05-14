@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<controls:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<mycontrols:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestApp.Views.LeavesPage"
-             xmlns:controls="clr-namespace:TestApp.Views.Controls"
+             xmlns:mycontrols="clr-namespace:TestApp.Views.Controls"
+             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
+             xmlns:viewModels="using:TestApp.ViewModels"
              Title="Leaves">
 
     <Shell.TitleView>
@@ -14,6 +16,96 @@
             Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
     </Shell.TitleView>
 
+    <ScrollView
+        Padding="20">
+        <Grid
+            RowSpacing="20"
+            RowDefinitions="Auto, *, Auto">
+            <Frame
+                Grid.Row="0"
+                HasShadow="True"
+                Padding="12">
+                <controls:Calendar>
+                </controls:Calendar>
+
+            </Frame>
+
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="Auto, *"
+                RowSpacing="10">
+                <Label
+                    Grid.Row="0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Recent Leaves"
+                                  FontFamily="MyFont_SemiBold"
+                                  FontSize="18"
+                                  ></Span>
+                            <Span Text="(Click to see details)"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <CollectionView
+                    ItemsSource="{Binding Leaves}"
+                    Grid.Row="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:LeaveViewModel">
+                            <Frame
+                                CornerRadius="0"
+                                HasShadow="True"
+                                >
+                                <Grid
+                                    RowDefinitions="*, *"
+                                    RowSpacing="8"
+                                    ColumnSpacing="10">
+                                    <Grid ColumnSpacing="10" ColumnDefinitions="*, Auto">
+                                        <Label
+                                            Grid.Column="0"
+                                            FontFamily="MyFont_SemiBold"
+                                            Text="{Binding LeaveType}"></Label>
+                                        <Label
+                                            Grid.Column="1"
+                                            TextColor="Silver">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="("></Span>
+                                                    <Span Text="{Binding FromDate}"></Span>
+                                                    <Span Text=" - "></Span>
+                                                    <Span Text="{Binding ToDate}"></Span>
+                                                    <Span Text=")"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                    </Grid>
+                                    <Label
+                                        Grid.Row="2"
+                                        Text="{Binding Description}"
+                                        IsVisible="{Binding IsExpanded}"
+                                        MaxLines="4"
+                                        LineBreakMode="TailTruncation"></Label>
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding ClickCommand}"></TapGestureRecognizer>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+            <Button
+                Grid.Row="2"
+                Text="Apply for a Leave"
+                Clicked="GoToLeaveForm"
+                HeightRequest="56"></Button>
+        </Grid>
+    </ScrollView>
+
     
 
-</controls:BasePage>
+</mycontrols:BasePage>

@@ -9,7 +9,7 @@ namespace TestApp.Converters
 {
     class BoolColorConverter : IValueConverter
     {
-        public Color PresentColor { get; } = Colors.Gainsboro;
+        public Color PresentColor { get; } = Colors.Lavender;
         public Color AbsentColor { get; } = Colors.White;
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {

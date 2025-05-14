@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="using:TestApp.ViewModels"
+             x:Class="TestApp.Views.LeaveFormPage"
+             Title="LeaveFormPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:LeaveTypeViewModel/>
+    </ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Label 
+            VerticalOptions="Center"
+            FontFamily="MyFont_SemiBold"
+            FontSize="20"
+            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}"/>
+    </Shell.TitleView>
+
+    <ScrollView
+        Padding="20">
+        <VerticalStackLayout
+            Spacing="20">
+            <VerticalStackLayout
+                Spacing="10">
+                <Label Text="Leave type"></Label>
+                <Picker
+                    Title="Pick from here"
+                    TitleColor="Silver"
+                    ItemsSource="{Binding LeaveTypes}"></Picker>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Description"></Label>
+                <Editor
+                    Placeholder="Start typing..."
+                    HeightRequest="100"></Editor>
+            </VerticalStackLayout>
+            <Grid ColumnSpacing="10" ColumnDefinitions="Auto, *, Auto, *">
+                <Label 
+                    Grid.Column="0"
+                    Text="From" VerticalTextAlignment="Center"></Label>
+                <DatePicker Grid.Column="1"
+                            Format="dd/MM/yyyy"></DatePicker>
+                <Label 
+                    Grid.Column="2"
+                    Text="To" VerticalTextAlignment="Center"></Label>
+                <DatePicker Grid.Column="3"
+                            Format="dd/MM/yyyy"></DatePicker>
+            </Grid>
+            <Button
+                Margin="0, 20"
+                Text="Submit"
+                Clicked="GoBack"
+                HeightRequest="56"></Button>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

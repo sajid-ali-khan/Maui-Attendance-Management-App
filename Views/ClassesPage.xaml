@@ -19,6 +19,8 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="viewModels:SubjectViewModel">
                 <Frame
+                    CornerRadius="4"
+                    HasShadow="True"
                     Margin="20, 5">
                     <VerticalStackLayout
                         Spacing="10">

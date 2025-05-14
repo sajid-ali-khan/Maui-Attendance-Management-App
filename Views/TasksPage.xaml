@@ -118,6 +118,7 @@
                                 BackgroundColor="{Binding BgColor}"
                                 Padding="10"
                                 Margin="0, 5"
+                                CornerRadius="4"
                                 >
                                 <Grid
                                     ColumnDefinitions="Auto, *, Auto"
@@ -173,7 +174,6 @@
 
         <Frame x:Name="TaskSheet"
            BackgroundColor="White"
-           HeightRequest="100"
            CornerRadius="20"
            IsVisible="False"
            TranslationY="100"
@@ -190,14 +190,17 @@
                     Grid.Column="0"
                     x:Name="TaskEntry"
                     VerticalOptions="Center"
-                    Placeholder="eg. Pick up my friend"></Entry>
+                    Placeholder="eg.Do the garden"></Entry>
                 <Button
                     Grid.Column="1"
-                    HeightRequest="36"
-                    CornerRadius="12"
-                    VerticalOptions="Center"
+                    CornerRadius="50"
+                    HeightRequest="50"
+                    WidthRequest="50"
                     Clicked="DoneClicked"
-                    Text="Done"></Button>
+                    ImageSource="check"
+                    TextColor="White">
+                </Button>
+
             </Grid>
             
         </Frame>
